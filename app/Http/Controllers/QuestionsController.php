@@ -69,7 +69,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        return view("questions.create", compact('question'));
+        return view("questions.edit", compact('question'));
     }
 
     /**
@@ -92,8 +92,10 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return redirect('/questions')->with('succes','Your question has been deleted');
     }
 }
